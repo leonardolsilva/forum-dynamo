@@ -6,9 +6,7 @@ import br.com.lelecoder.forumdynamo.adapter.persistence.converters.ListRespostaM
 import br.com.lelecoder.forumdynamo.core.domain.SituacaoTopico;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbConvertedBy;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,6 +26,7 @@ public class TopicoModel {
     private List<RespostaModel> respostas;
 
     @DynamoDbAttribute("id_topico")
+    @DynamoDbPartitionKey
     public String getIdentificadorTopico() {
         return identificadorTopico;
     }
@@ -48,6 +47,7 @@ public class TopicoModel {
     }
 
     @DynamoDbAttribute("situacao")
+    @DynamoDbSortKey
     public SituacaoTopico getStatus() {
         return status;
     }
