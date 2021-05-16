@@ -2,15 +2,19 @@ package br.com.lelecoder.forumdynamo.adapter.persistence.model;
 
 import br.com.lelecoder.forumdynamo.adapter.persistence.converters.AlunoModelConverter;
 import br.com.lelecoder.forumdynamo.adapter.persistence.converters.TopicoModelConverter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbConvertedBy;
 
+@Data
 @DynamoDbBean
-@NoArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RespostaModel {
 
     private String identificadorResposta;

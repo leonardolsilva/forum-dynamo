@@ -6,13 +6,14 @@ import br.com.lelecoder.forumdynamo.core.ports.out.TopicoPort;
 import br.com.lelecoder.forumdynamo.core.usecases.BuscarRespostaSolucionadoraImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 
 @Configuration
 public class BeanCreator {
 
     @Bean
-    TopicoPort topicoPort() {
-        return new TopicoPortAdapter();
+    TopicoPort topicoPort(DynamoDbEnhancedClient dbEnhancedClient) {
+        return new TopicoPortAdapter(dbEnhancedClient);
     }
 
     @Bean

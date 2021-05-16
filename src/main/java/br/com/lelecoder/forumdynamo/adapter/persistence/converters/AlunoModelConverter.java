@@ -4,26 +4,33 @@ import br.com.lelecoder.forumdynamo.adapter.persistence.model.AlunoModel;
 import software.amazon.awssdk.enhanced.dynamodb.AttributeConverter;
 import software.amazon.awssdk.enhanced.dynamodb.AttributeValueType;
 import software.amazon.awssdk.enhanced.dynamodb.EnhancedType;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 public class AlunoModelConverter implements AttributeConverter<AlunoModel> {
+
+    private static final TableSchema<AlunoModel> alunoModelBeanSchema = TableSchema.fromBean(AlunoModel.class);
+
     @Override
     public AttributeValue transformFrom(AlunoModel alunoModel) {
-        return null;
+        return AttributeValue
+                .builder()
+                .m(alunoModelBeanSchema.itemToMap(alunoModel, false))
+                .build();
     }
 
     @Override
     public AlunoModel transformTo(AttributeValue attributeValue) {
-        return null;
+        return alunoModelBeanSchema.mapToItem(attributeValue.m());
     }
 
     @Override
     public EnhancedType<AlunoModel> type() {
-        return null;
+        return alunoModelBeanSchema.itemType();
     }
 
     @Override
     public AttributeValueType attributeValueType() {
-        return null;
+        return AttributeValueType.M;
     }
 }

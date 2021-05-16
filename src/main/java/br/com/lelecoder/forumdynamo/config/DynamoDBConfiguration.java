@@ -2,6 +2,7 @@ package br.com.lelecoder.forumdynamo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
@@ -16,6 +17,7 @@ public class DynamoDBConfiguration {
         return DynamoDbClient
                 .builder()
                 .endpointOverride(URI.create("http://localhost:8000"))
+                .credentialsProvider(DefaultCredentialsProvider.create())
                 .httpClientBuilder(UrlConnectionHttpClient.builder())
                 .build();
     }

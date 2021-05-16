@@ -3,16 +3,19 @@ package br.com.lelecoder.forumdynamo.adapter.persistence.model;
 import br.com.lelecoder.forumdynamo.adapter.persistence.converters.AlunoModelConverter;
 import br.com.lelecoder.forumdynamo.adapter.persistence.converters.DisciplinaModelConverter;
 import br.com.lelecoder.forumdynamo.adapter.persistence.converters.ListRespostaModelConverter;
-import br.com.lelecoder.forumdynamo.core.domain.SituacaoTopico;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @DynamoDbBean
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class TopicoModel {
 
@@ -20,7 +23,7 @@ public class TopicoModel {
     private String titulo;
     private String mensagem;
     private LocalDateTime dataCriacao;
-    private SituacaoTopico status;
+    private String status;
     private AlunoModel autor;
     private DisciplinaModel disciplina;
     private List<RespostaModel> respostas;
@@ -29,6 +32,11 @@ public class TopicoModel {
     @DynamoDbPartitionKey
     public String getIdentificadorTopico() {
         return identificadorTopico;
+    }
+
+    public void setIdentificadorTopico(String identificadorTopico) {}
+
+    public void setStatus(String status) {
     }
 
     @DynamoDbAttribute("titulo")
@@ -48,7 +56,7 @@ public class TopicoModel {
 
     @DynamoDbAttribute("situacao")
     @DynamoDbSortKey
-    public SituacaoTopico getStatus() {
+    public String getStatus() {
         return status;
     }
 

@@ -16,16 +16,14 @@ public class BuscarRespostaSolucionadoraImpl implements BuscarRespostaSolucionad
         this.topicoPort = topicoPort;
     }
 
-    public BuscarRespostaSolucionadoraImpl() {
-
-    }
+    public BuscarRespostaSolucionadoraImpl() {}
 
     @Override
     public Optional<Resposta> encontrar(String idTopico) {
 
         Optional<Topico> optionalTopico = topicoPort.buscar(idTopico);
 
-        if (optionalTopico.isEmpty()) {
+        if (!optionalTopico.isPresent()) {
             throw new TopicoNaoEncontradoException("Não foi encontrado o tópico " +idTopico);
         }
 

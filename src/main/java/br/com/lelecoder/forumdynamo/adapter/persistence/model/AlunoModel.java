@@ -1,12 +1,16 @@
 package br.com.lelecoder.forumdynamo.adapter.persistence.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 
-@Builder
+@Data
 @DynamoDbBean
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class AlunoModel {
 
